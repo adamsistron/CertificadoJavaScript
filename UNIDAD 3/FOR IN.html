@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+
+  
+
+
+    <p id="salida"></p>
+
+
+ 
+
+
+</body>
+
+<script>
+
+			var texto="";
+
+		    var proveedor = {
+		        nit: "001",
+		        nombre: "Wdbi",
+		        telefono: 4564930,
+		        direccion: "Carrera 98A #15A-80"
+		    };
+
+
+
+		    var x;
+
+		    for (x in proveedor) {
+
+		    	var value = toString(proveedor[x]);
+		    	console.log(value);
+debugger;
+		     texto+=x+": "+value.toUpperCase()+"<br>";
+		    }
+
+		   document.getElementById("salida").innerHTML = texto;
+
+
+</script>
+
+</html>

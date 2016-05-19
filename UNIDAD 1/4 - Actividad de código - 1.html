@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+
+<div>
+  Crear un HTML con un script donde se cree tres objetos llamados articulo1, articulo2 y articulo3 con las tres respectivas formas explicadas en la lección. Las propiedades que tendrán los objetos son:
+
+    codigo: De tipo texto
+    nombre: De tipo texto
+    precio: De tipo numérico
+
+Después de haber creado los objetos, mostrar las propiedades de cada uno de los objetos.
+</div>
+
+  <h1>Articulo 1</h1>
+
+  <p id="c1"></p>
+  <p id="n1"></p>
+  <p id="p1"></p>
+
+  <h1>Articulo 2</h1>
+
+  <p id="c2"></p>
+  <p id="n2"></p>
+  <p id="p2"></p>
+
+  <h1>Articulo 3</h1>
+
+  <p id="c3"></p>
+  <p id="n3"></p>
+  <p id="p3"></p>
+
+</body>
+
+  <script>
+
+    
+    var articulo1 = {
+        codigo: "001",
+        nombre: "Camisa",
+        precio: 8000
+    }
+
+
+
+   
+    var articulo2 = new Object();
+    articulo2.codigo = "002";
+    articulo2.nombre = "Balon";
+    articulo2.precio = 5000;
+
+
+
+   
+    function articulo3(codigo, nombre, precio) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
+    var articulo3 = new articulo3("003", "Celular", 30000);
+
+
+
+ 
+
+
+    document.getElementById("c1").innerHTML = articulo1.codigo;
+    document.getElementById("n1").innerHTML = articulo1.nombre;
+    document.getElementById("p1").innerHTML = articulo1.precio;
+
+    document.getElementById("c2").innerHTML = articulo2.codigo;
+    document.getElementById("n2").innerHTML = articulo2.nombre;
+    document.getElementById("p2").innerHTML = articulo2.precio;
+
+    document.getElementById("c3").innerHTML = articulo3.codigo;
+    document.getElementById("n3").innerHTML = articulo3.nombre;
+    document.getElementById("p3").innerHTML = articulo3.precio;
+
+</script>
+
+</html>

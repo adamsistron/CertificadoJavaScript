@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+
+    <h1>Comentarios de una linea</h1>
+
+    <p id="var1"></p>
+    <p id="var2"></p>
+    <p id="var3"></p>
+    <p id="var4"></p>
+    <p id="var5"></p>
+
+    <p id="coseno"></p>
+    <p id="padres"></p>
+    <p id="abuelos"></p>
+    <p id="tios"></p>
+    <p id="primos"></p>
+ 
+   
+    <p id="resultado"></p>
+ 
+
+</body>
+
+
+<script>
+      
+
+
+
+      var a = 50;      
+      document.getElementById("var1").innerHTML=a;
+
+      var b = 43 * 3;      
+      document.getElementById("var2").innerHTML=b;
+
+
+      var c = (32/2)*4;      
+      document.getElementById("var3").innerHTML=c;
+
+
+      var d = "Hola como esta?";      
+      document.getElementById("var4").innerHTML=d;
+
+
+      var e = "Next University";     
+      document.getElementById("var5").innerHTML=e;
+
+
+
+
+
+
+
+ 	
+
+      function suma() {
+          return 4 + 10;
+      }
+
+      
+      var resultado=suma();
+
+      document.getElementById("resultado").innerHTML=resultado;
+      //Ejemplo de Math
+      var coseno = Math.cos(0);
+
+      document.getElementById("coseno").innerHTML=coseno;
+      //Ejemplo de Arrays
+      var padres = ["Adam","Gabriela",];
+      var abuelos = ["Gloria","Amalia","Fredy","Carmen Ismel","Rodrigo"];
+      var tios = ["Ana Maria","Estefania","Ismelange","Gloduard"];
+      var primos = ["Jose Alejandro","Annibel Alejandra"];
+debugger;
+      document.getElementById("padres").innerHTML=padres.sort();
+      document.getElementById("abuelos").innerHTML=abuelos.sort();
+      document.getElementById("tios").innerHTML=tios.sort();
+      document.getElementById("primos").innerHTML=primos.sort();
+
+      console.log(abuelos);
+
+      console.debug(abuelos);
+
+      console.table(abuelos);
+
+</script>
+
+</html>
