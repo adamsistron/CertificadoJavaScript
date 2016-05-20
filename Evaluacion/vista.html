@@ -7,15 +7,17 @@
   </head>
   <body>
     <div>
-      <button onclick="mostrarEstudiantes()">Mostrar Estudiantes</button>
-      <button onclick="mostrarPromedio()">Mostrar Promedio</button>
-      <button onclick="mostrarNotaMas('alta')">Mostrar Notas mas Alta</button>
-      <button onclick="mostrarNotaMas('baja')">Mostrar Notas mas Baja</button>
-      <button onclick="limpiarResultados()">Limpiar Resultados</button>
-      <div><p id="tabla"></p></div>
-      <div><p id="promedio"></p></div>
-      <div><p id="alta"></p></div>
-      <div><p id="baja"></p></div>
+      <div class="center">
+        <button class="button" onclick="mostrarEstudiantes()">Mostrar Estudiantes</button>
+        <button class="button" onclick="mostrarPromedio()">Mostrar Promedio</button>
+        <button class="button" onclick="mostrarNotaMas('alta')">Mostrar Notas mas Alta</button>
+        <button class="button" onclick="mostrarNotaMas('baja')">Mostrar Notas mas Baja</button>
+        <!--button onclick="limpiarResultados()">Limpiar Resultados</button-->
+      </div>
+      <div id="tabla" style="overflow-x:auto;"></div>
+      <div id="promedio"></div>
+      <div id="alta"></div>
+      <div id="baja"></div>
     </div>
   </body>
 </html>

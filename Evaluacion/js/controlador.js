@@ -63,7 +63,7 @@ function mostrarPromedio() {
   promedioNotas(jsObj);
 }
 function limpiarResultados() {
-  var pS = document.getElementsByTagName('p');
+  var pS = document.getElementsByTagName('div');
   for (var i = 0; i < pS.length; ++i) {
     pS[i].innerHTML = '';
   }
