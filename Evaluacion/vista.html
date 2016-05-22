@@ -1,23 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  <title>Evaluacion Curso 1</title>
-    <link rel="stylesheet" type="text/css" href="css/estilo.css">
-    <script type="text/javascript" src="js/controlador.js"></script>
-  </head>
-  <body>
-    <div>
-      <div class="center">
-        <button class="button" onclick="mostrarEstudiantes()">Mostrar Estudiantes</button>
-        <button class="button" onclick="mostrarPromedio()">Mostrar Promedio</button>
-        <button class="button" onclick="mostrarNotaMas('alta')">Mostrar Notas mas Alta</button>
-        <button class="button" onclick="mostrarNotaMas('baja')">Mostrar Notas mas Baja</button>
-        <!--button onclick="limpiarResultados()">Limpiar Resultados</button-->
-      </div>
-      <div id="tabla" style="overflow-x:auto;"></div>
-      <div id="promedio"></div>
-      <div id="alta"></div>
-      <div id="baja"></div>
-    </div>
-  </body>
+    <head>
+        <title>Evaluacion Curso JavaScript: lo esencial</title>
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <script type="text/javascript" src="js/controlador.js"></script>
+    </head>
+    <body>
+
+        <div id="header">
+            <h1>Cartelera de Resultados/Estudiantes</h1>
+        </div>
+
+        <div id="nav">
+            <button id="op1" onclick="mostrarEstudiantes(this)">Estudiantes</button>
+            <button id="op2" onclick="mostrarPromedio(this)">Nota Promedio</button>
+            <button id="op3" onclick="mostrarNotaMas(this, 'max')">Notas mas Alta</button>
+            <button id="op4" onclick="mostrarNotaMas(this, 'min')">Notas mas Baja</button>
+            <button id="op5" onclick="mostrarCountEstudiantesPromedio(this, 'max')">Estudiantes sobre el Promedio</button>
+            <button id="op6" onclick="mostrarCountEstudiantesPromedio(this, 'min')">Estudiantes debajo del Promedio</button>
+            <button onclick="javascript:location.reload()">Resetear</button>
+        </div>
+        <div class="seccion1">
+            <table id="tablaEstudiantes">
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre y Apellido</th>
+                    <th>Nota</th>
+                </tr>
+            </table>
+        </div>
+        <div class="seccion2">
+            <table id="tablaIndicadores">
+                <tr>
+                    <th>Agregacion</th>
+                    <th>Valor/Total</th>
+                    <th>Proporcion (%)</th>
+                </tr>
+
+            </table>
+        </div>
+
+        <div id="footer">
+            JavaScript: lo esencial >	Evaluacion Final. By Adam Carrillo (adamsistron@gmail.com)
+        </div>
+
+    </body>
 </html>
