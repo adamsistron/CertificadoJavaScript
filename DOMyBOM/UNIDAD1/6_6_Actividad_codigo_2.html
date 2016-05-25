@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modificando CSS</title>
+        <script type="text/javascript" >
+
+            function cambiarEstiloDiv() {
+
+                document.getElementById('miDiv').style.backgroundColor = 'blue';
+                document.getElementById('miDiv').style.color = 'yellow';
+                document.getElementById('miDiv').style.width = '500px';
+                document.getElementById('miDiv').style.height = '500px';
+                document.getElementById('miDiv').style.fontSize = 'xx-large';
+            }
+
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <div id="miDiv">
+            Mi div !!!
+        </div>
+
+
+        <button type="button"  onclick="cambiarEstiloDiv()"> 
+            Cambiar
+        </button>
+
+    </body>
+
+</html>

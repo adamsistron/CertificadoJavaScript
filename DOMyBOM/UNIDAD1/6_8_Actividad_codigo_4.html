@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <script type="text/javascript">
+
+            function cambiarInput() {
+
+                document.getElementById('miInput').style.backgroundColor = 'blue';
+                document.getElementById('miInput').style.color = 'yellow';
+                document.getElementById('miInput').style.width = '200px';
+                document.getElementById('miInput').style.height = '80px';
+
+            }
+
+
+            function cambiarDiv() {
+
+                document.getElementById('miDiv').style.backgroundColor = 'orange';
+                document.getElementById('miDiv').style.color = 'white';
+                document.getElementById('miDiv').style.width = '800px';
+                document.getElementById('miDiv').style.height = '800px';
+                document.getElementById('miDiv').style.fontSize = 'x-large';
+
+            }
+
+
+            function cambiarParrafo() {
+
+                document.getElementById('miParrafo').style.backgroundColor = 'green';
+                document.getElementById('miParrafo').style.color = 'red';
+                document.getElementById('miParrafo').style.fontSize = 'xx-large';
+
+            }
+
+
+
+        </script>
+
+    </head>
+
+    <body>
+
+        <input type="text" id="miInput">
+
+        <div id="miDiv">
+            Mi div!!!
+        </div>
+
+        <p id="miParrafo">Pienso luego, existo..</p>
+
+        <button type="button" onclick="cambiarInput()">
+            Cambiar Input
+        </button>
+
+
+        <button type="button" onclick="cambiarDiv()">
+            Cambiar Div
+        </button>
+
+        <button type="button" onclick="cambiarParrafo()">
+            Cambiar Parrafo
+        </button>
+
+
+
+    </body>
+
+</html>

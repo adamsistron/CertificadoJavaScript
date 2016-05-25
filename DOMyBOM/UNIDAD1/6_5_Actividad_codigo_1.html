@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Modificando CSS</title>
+        <script type="text/javascript" >
+
+            function cambiarTipoFuente() {
+                document.getElementById('texto1').style.fontFamily = 'Courier New';
+                document.getElementById('texto2').style.fontFamily = 'Verdana';
+
+            }
+
+            function cambiarColorFondo() {
+
+                document.getElementById('texto1').style.backgroundColor = 'yellow';
+                document.getElementById('texto2').style.backgroundColor = 'blue';
+
+
+            }
+
+
+        </script>
+
+    </head>
+
+    <body>
+
+
+        <p id="texto1">Mi primer texto!</p>
+        <p id="texto2">Mi segundo texto!</p>
+
+        <button type="button"  onclick="cambiarTipoFuente()"> 
+            Cambiar Texto
+        </button>
+
+        <button type="button"  onclick="cambiarColorFondo()"> 
+            Cambiar Color
+        </button>
+
+    </body>
+
+</html>

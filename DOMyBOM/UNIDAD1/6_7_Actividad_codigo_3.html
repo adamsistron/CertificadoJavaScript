@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <script type="text/javascript">
+
+            function cambiarCss() {
+
+                document.getElementById('titulos').style.backgroundColor = 'red';
+                document.getElementById('jugador1').style.backgroundColor = 'blue';
+                document.getElementById('jugador2').style.backgroundColor = 'blue';
+                document.getElementById('jugador3').style.backgroundColor = 'blue';
+                document.getElementById('jugador4').style.backgroundColor = 'blue';
+
+
+                document.getElementById('jugador1').style.fontStyle = 'italic';
+                document.getElementById('jugador2').style.fontStyle = 'italic';
+                document.getElementById('jugador3').style.fontStyle = 'italic';
+                document.getElementById('jugador4').style.fontStyle = 'italic';
+
+
+                document.getElementById('jugador1').style.fontWeight = 'bold';
+                document.getElementById('jugador2').style.fontWeight = 'bold';
+                document.getElementById('jugador3').style.fontWeight = 'bold';
+                document.getElementById('jugador4').style.fontWeight = 'bold';
+
+            }
+        </script>
+
+    </head>
+
+    <body>
+
+        <table  border="1">
+
+            <tr id="titulos">
+                <th>Goleadores</th>
+                <th>Goles</th>
+            </tr>
+
+            <tr id="jugador1">
+                <td>James Rodirguez</td>
+                <td>6</td>
+            </tr>
+
+            <tr id="jugador2">
+                <td>Thomas Mueller</td>
+                <td>5</td>
+            </tr>
+
+            <tr id="jugador3">
+                <td>Neymar</td>
+                <td>4</td>
+            </tr>
+
+            <tr id="jugador4">
+                <td>Lionel Messi</td>
+                <td>4</td>
+            </tr>
+        </table>
+        <button type="button" onclick="cambiarCss()">
+            Cambiar
+        </button>
+
+    </body>
+
+</html>
