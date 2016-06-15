@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <p>
+            Crear un documento HTML que contenga 4 etiquetas párrafos <\p\> con su respectivo texto “Mi párrafo 1”, ”Mi párrafo 2”, “Mi párrafo 3”, y “Mi párrafo 4“.  Crear un botón que tenga como acción cambiar el color de texto de los párrafos a naranja.
+        </p>
+        <p>Mi primer parrafo</p>
+
+        <p>Mi segundo parrafo</p>
+
+        <p>Mi tercer parrafo</p>
+
+        <p>Mi cuarto parrafo</p>
+
+        <button onclick="cambiarColor()">Cambiar Color</button>
+
+        <script>
+
+            function cambiarColor() {
+                var listaNodos = document.getElementsByTagName("p");
+
+                for (var i = 0; i < listaNodos.length; i++) {
+                    listaNodos[i].style.color = "orange";
+                }
+            }
+        </script>
+
+    </body>
+
+</html>
