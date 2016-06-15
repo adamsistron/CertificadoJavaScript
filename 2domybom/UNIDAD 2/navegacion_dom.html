@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script>
+            var cambiartexto = document.getElementById("texto1").childNodes[0].nodeValue;
+            document.getElementById("texto2").innerHTML = cambiartexto;
+
+            function nodosHijos() {
+                var texto = "";
+                var div = document.getElementsByTagName("div")[0];
+                for (var i = 0; i < div.childNodes.length; i++) { // recorremos el arreglo de nodos hijos que nos devuelve la propiedad childNodes del elemento div
+                    texto += div.childNodes[i].nodeName + "<br>";// concatenamos el  nombre de los nodos hijos a la variable texto.   
+                }
+                document.getElementById("mensaje").innerHTML = texto;  // cambiamos el html del parrafo con id mensaje con el String texto
+            }
+
+            function nodoPrimero() {
+
+                var texto = "";
+                var div = document.getElementById("miDiv");
+                var mensaje = document.getElementById("mensaje");
+                mensaje.innerHTML = "Primer Elemento del Div: " + div.firstChild.nodeName;// Se utiliza la propiedad firstChild del div para obtener el primer nodo hijo con su respectivo nombre para mostrar el elemento p con id mensaje.
+
+            }
+
+            function nodoUltimo() {
+
+                var texto = "";
+                var div = document.getElementById("miDiv");
+                var mensaje = document.getElementById("mensaje");
+                mensaje.innerHTML = "Ultimo Elemento del Div: " + div.lastChild.nodeName;// Se utiliza la propiedad lastChild del div para obtener el ultimo nodo hijo con su respectivo nombre para mostrarlo en el elemento p con id mensaje.
+
+            }
+
+
+        </script>
+        <p>Crear un código HTML que contenga una etiqueta h1 con id=”texto1” y muestre la frase “Primer Texto”, y otra etiqueta p con id=”texto2” que muestre la frase “Segundo Texto”. Crear un script que permita cambiar el texto que tiene el elemento p por el mensaje que tiene la etiqueta h1 utilizando la propiedad childnodes y que este comando esté asignado a una variable llamada cambiartexto. 
+
+            Después de esto, agregar una etiqueta h1 que muestre el mensaje “Elementos”, y agregar un párrafo que diga Nombre, con un input de tipo texto y un botón con valor aceptar dentro de un div.
+
+            Se debe crear un botón que permita mostrar los tipos de elementos que se encuentran en el div.
+            Se debe crear un botón que permita ver cuál es el primer elemento que se encuentra dentro del div.
+            Se debe crear otro botón que permita saber cuál es el último botón que está dentro del div.
+            Esto se debe mostrar en una etiqueta párrafo después de estos botones.
+
+            La imagen muestra cómo se debe mostrar.
+        </p>
+        <h1 id="texto1">Primer Texto</h1>
+        <p id="texto2">Segundo Texto</p>
+        <br>
+
+        <h2>Elementos</h2>
+        <div id ="miDiv"><p>Nombre:</p><input type="text" /><input type="button" value="Aceptar" /></div>
+
+        <br><br>
+
+        <button onclick="nodosHijos()">Ver tipo de Elementos</button>
+        <button onclick="nodoPrimero()">Primer Elemento</button>
+        <button onclick="nodoUltimo()">Ultimo Elemento</button>
+
+        <p id="mensaje">
+
+    </body>
+</html>

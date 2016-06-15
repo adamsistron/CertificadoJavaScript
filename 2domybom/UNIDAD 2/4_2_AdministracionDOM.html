@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <p id="parrafo">
+            <a id="e1" href="#">Este es el enlace</a>
+        <p id="p1">¡Primer párrafo!</p>
+        <p id="p2">¡Segundo párrafo!</p>
+
+    <script>
+        alert("Se eliminará el enlace y el segundo párrafo mediante removeChild().");
+        var nodo_enlace = document.getElementById("e1");
+        nodo_enlace.parentNode.removeChild(nodo_enlace);
+
+        var nodo_parrafo = document.getElementById("p2");
+        nodo_parrafo.parentNode.removeChild(nodo_parrafo);
+    </script>
+
+</body>
+</html>
