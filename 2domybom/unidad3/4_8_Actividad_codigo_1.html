@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ruta</title>
+<p>
+    Desarrollar un documento HTML que al presionar un botón se ejecute una función JavaScript, retornando la ruta  actual de la página.
+</p>
+<script>
+function ruta() {
+    var propiedad=location.pathname;
+    alert("La ruta actual de la página es: "+propiedad);
+}
+</script>
+</head>
+<body>
+	<input type="button" value="Presionar" onclick="ruta()"/>
+</body>
+</html>
