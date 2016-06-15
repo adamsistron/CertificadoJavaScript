@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <p>
+            Crear un HTML con dos botones: uno con texto ”Abrir Ventana” y el otro con texto “Cambiar dimensión de la Ventana”. La idea es que cuando se haga clic sobre el botón Abrir Ventana se abra una ventana con un ancho de 300px y un alto de 300px. Cuando se haga clic al botón Cambiar dimensión de la Ventana, la ventana cambiará las dimensiones de la pantalla a un ancho de 600px y a un alto de 600px. 
+        </p>
+        <button onclick="abrirVentana()">Abrir Ventana</button>
+        <button onclick="cambiarDimVentana()">Cambiar dimension Ventana</button>
+
+        <script>
+            var ventana1;
+
+            function abrirVentana() {
+                ventana1 = window.open("", "_blank", "width=300, height=300");
+
+            }
+
+            function cambiarDimVentana() {
+                ventana1.resizeTo(600, 600);
+                ventana1.focus();
+
+            }
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <p>
+            Crear un HTML con un botón que contenga un texto “Abrir Ventana”. Cuando se haga clic sobre el botón se abrirá una ventana en blanco sin URL, con un ancho de 400px y un alto de 200px.
+        </p>
+        <button onclick="abrirVentana()">Abrir Ventana</button>
+
+
+        <script>
+            var ventana1;
+
+            function abrirVentana() {
+                ventana1 = window.open("", "_blank", "width=400, height=200");
+
+            }
+
+        </script>
+
+    </body>
+</html>

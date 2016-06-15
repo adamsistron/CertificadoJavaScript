@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <p>
+            Crear un HTML con dos botones: uno con el texto ”Abrir Ventana” y el otro con el texto “Mover Ventana”. La idea es que cuando se haga clic sobre el botón Abrir Ventana, se abra una ventana con un ancho de 800px y un alto de 500px. Cuando se haga clic con el botón Mover Ventana, la ventana se moverá 500px horizontalmente y 400px verticalmente.
+        </p>
+        <button onclick="abrirVentana()">Abrir Ventana</button>
+        <button onclick="moverVentana()">Mover Ventana</button>
+
+        <script>
+            var ventana1;
+
+            function abrirVentana() {
+                ventana1 = window.open("", "_blank", "width=800, height=500");
+
+            }
+
+            function moverVentana() {
+                ventana1.moveTo(500, 400);
+                ventana1.focus();
+            }
+        </script>
+    </body>
+</html>
