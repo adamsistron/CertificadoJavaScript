@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+    <body onload="navegador()">
+
+
+
+        <h2>Informacion del Navegador</h2>
+
+
+
+
+
+
+
+        <p id="mensaje"></p>
+
+
+
+        <script>
+
+            function navegador() {
+
+
+
+                document.getElementById("mensaje").innerHTML =
+                        "Nombre: " + navigator.appName + "<br>" +
+                        "Codigo de Nombre: " + navigator.appCodeName + "<br>" +
+                        "Version: " + navigator.appVersion + "<br>" +
+                        "Lenguaje: " + navigator.language + "<br>" +
+                        "Plataforma: " + navigator.platform + "<br>" +
+                        "Producto: " + navigator.product + "<br>" +
+                        "Navegador esta en linea: " + navigator.onLine + "<br>" +
+                        "Java esta Habilitado: " + navigator.javaEnabled() + "<br>" +
+                        "Agente de Usuario: " + navigator.userAgent + "<br>" +
+                        "Cookies Habilitadas: " + navigator.cookieEnabled;
+
+
+
+            }
+
+        </script>
+
+    </body>
+
+</html>
+

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <body onload="confirmar()">
+
+        <p>
+            Crear una página HTML que cuando se cargue muestre un mensaje con las etiquetas H1 que diga “Respuesta” y una etiqueta párrafo con id=”respuesta”. 
+            Usando las etiquetas script, crear una función que se llame confirmar con una variable que se llame opcion. Al implementar el cuadro de confirmación, se debe mostrar un mensaje que diga “Acepta el procedimiento?”. Si el usuario escoge aceptar, que muestre un mensaje en la etiqueta párrafo que diga “Usted aceptó el procedimiento. Gracias.”, y si escoge cancelar muestre “Usted canceló el procedimiento, no será tenido en cuenta en el proceso”.
+        </p>
+        <h1>Respuesta</h1>
+        <p id="respuesta"></p>
+        <script>
+            function confirmar() {
+                var opcion;
+                if (confirm("Acepta el procedimiento?") == true) {
+                    opcion = "Usted aceptó el procedimiento. Gracias.";
+                } else {
+                    opcion = "Usted canceló el procedimiento. No será tenido en cuenta en el proceso";
+                }
+                document.getElementById("respuesta").innerHTML = opcion;
+            }
+        </script>
+    </body>
+</html>

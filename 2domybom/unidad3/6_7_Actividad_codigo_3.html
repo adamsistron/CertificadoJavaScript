@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+    <body>
+
+
+
+        <h2>Navegador del BOM</h2>
+
+
+
+
+
+
+
+        <button onclick="mostrarPlugins()">Mostrar Plugins</button>
+
+
+
+        <p id="mensaje"></p>
+
+
+
+
+
+
+
+    </body>
+
+
+
+    <script>
+
+
+
+        function mostrarPlugins() {
+
+            var mensaje = "";
+
+
+
+            mensaje += "<b>Plugins:</b>" + "<br>";
+
+
+
+            for (var j = 0; j < navigator.plugins.length; j++) {
+
+                mensaje += "-" + navigator.plugins[j].name + "<br>";
+
+            }
+
+
+
+
+
+            document.getElementById("mensaje").innerHTML = mensaje;
+
+        }
+
+
+
+    </script>
+
+</html>
+

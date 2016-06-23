@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+    <body>
+
+
+
+        <h2>Navegador del BOM</h2>
+
+
+
+
+
+
+
+        <button onclick="mostrarTiposMIME()">Mostrar Tipos MIME</button>
+
+
+
+        <p id="mensaje"></p>
+
+
+
+
+
+
+
+    </body>
+
+
+
+    <script>
+
+
+
+        function mostrarTiposMIME() {
+
+
+
+            var mensaje = "";
+
+
+
+
+
+
+
+            for (var i = 0; i < navigator.mimeTypes.length; i++) {
+
+
+
+                var tipo = navigator.mimeTypes[i].type;
+
+                switch (tipo) {
+
+                    case "application/x-shockwave-flash":
+
+                        mensaje += "-" + navigator.mimeTypes[i].type + "<br>";
+
+                        break;
+
+                    case "application/java-deployment-toolkit":
+
+                        mensaje += "-" + navigator.mimeTypes[i].type + "<br>";
+
+                        break;
+
+                    case "application/pdf":
+
+                        mensaje += "-" + navigator.mimeTypes[i].type + "<br>";
+
+                        break;
+
+                }
+
+
+
+            }
+
+
+
+
+
+            document.getElementById("mensaje").innerHTML = mensaje;
+
+        }
+
+
+
+    </script>
+
+</html>
+
