@@ -100,3 +100,18 @@ button:disabled{
 div{
     border: #000000;
 }
+input[type=text], input[type=number] {
+    width: 250px;
+    padding: 12px 14px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+#divFormulario{
+    padding: 20px;
+    display: none;
+    width:30%;
+    float:left;
+    
+}

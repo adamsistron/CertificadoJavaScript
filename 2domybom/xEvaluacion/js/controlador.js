@@ -33,6 +33,9 @@ var jsObj = JSON.parse(jsonText);
  * @returns {Boolean}
  */
 function generarTabla(datos, id) {
+    
+    console.log(datos);
+    
     eliminarFilasTabla(id);
     var moduloDatos = datos.estudiantes.length;
     var table = document.getElementById(id);
@@ -53,8 +56,10 @@ function generarTabla(datos, id) {
  * @param {type} array: Arreglo que contiene las celdas que se agregan a las filas.
  * @returns {Boolean}
  */
-function agregarRow(id, array) {
-    var tableAddRow = document.getElementById(id);
+function agregarRow(idTable, array) {
+//function agregarRow(idTable,idRow, array) {
+    var tableAddRow = document.getElementById(idTable);
+    //tableAddRow.removeChild(document.getElementById(idRow));
     var row = tableAddRow.insertRow(1);
     for (i = 0; i < array.length; i++) {
         var celdaX = row.insertCell(i);
@@ -217,8 +222,10 @@ function countEstudiantesPromedio(arg) {
  * Usuario
  * 
  */
+
 function mostrarEstudiantes(elemento) {
     generarTabla(jsObj, "tablaEstudiantes");
+    
     //elemento.disabled = true;
 }
 function mostrarNotaMas(elemento, arg) {
@@ -233,14 +240,15 @@ function mostrarCountEstudiantesPromedio(elemento, arg) {
     elemento.disabled = true;
 }
 function crearEstudiante() {
+    
     var codigo = document.getElementById('codigo').value;
     var nombre = document.getElementById('nombre').value;
     var nota = document.getElementById('nota').value;
     jsObj.estudiantes.push(
             {"codigo": codigo, "nombre": nombre, "nota": nota}
     );
-    alert('Estudiante ' + nombre + ' con el codigo ' + codigo + ' fue registrado con exito');
-    //generarTabla(jsObj, "tablaEstudiantes");
+    formularioEstudiante('none');
+    mostrarEstudiantes();
 }
 function eliminarFilasTabla(idTable) {
     var tableHeaderRowCount = 1;
@@ -250,3 +258,28 @@ function eliminarFilasTabla(idTable) {
         table.deleteRow(tableHeaderRowCount);
     }
 }
+function formularioEstudiante(display){
+    var ddE, ddR, ddF;
+    
+    if(display==='block'){
+        ddE = 'none';
+        ddR = 'none';
+        ddF = 'block';
+    }else{
+        ddE = 'block';
+        ddR = 'block';
+        ddF = 'none';
+    }
+    var divEstudiante = document.getElementById('divEstudiante');
+    divEstudiante.setAttribute("style", "display:"+ddE);
+    
+    var divResultados = document.getElementById('divResultados');
+    divResultados.setAttribute("style", "display:"+ddR);
+    
+    var divFormulario = document.getElementById('divFormulario');
+    divFormulario.setAttribute("style", "display:"+ddF);
+}
+
+
+
+
