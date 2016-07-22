@@ -13,7 +13,6 @@
 
         <div id="nav">
             <button id="op7" onclick="formularioEstudiante('block')">Nuevo Estudiante</button>
-            <button id="op1" onclick="mostrarEstudiantes(this)">Estudiantes</button>
             <button id="op2" onclick="mostrarPromedio(this)">Nota Promedio</button>
             <button id="op3" onclick="mostrarNotaMas(this, 'max')">Notas mas Alta</button>
             <button id="op4" onclick="mostrarNotaMas(this, 'min')">Notas mas Baja</button>
@@ -23,7 +22,7 @@
         </div>
         <div id="divFormulario">
             <label for="codigo">Codigo</label><br>
-            <input type="number" id="codigo" name="codigo" value=""><br>
+            <input type="number" id="codigo" name="codigo" value="" readonly="readonly"><br>
             <label for="nombre">Nombre y Apellido</label><br>
             <input type="text" id="nombre" name="nombre" value=""><br>
             <label for="nota">Nota</label><br>

@@ -2,20 +2,6 @@
  * 
  * @type String: Se crea los datos base a ser procesados en formato Texto.
  */
-/*
- var jsonText = '{"estudiantes":[' +
-        '{"codigo":"0001","nombre":"Adam Carrillo","nota":4.7},' +
-        '{"codigo":"0002","nombre":"William Buitrago","nota":2.8},' +
-        '{"codigo":"0003","nombre":"Andres Santos","nota":3.9},' +
-        '{"codigo":"0004","nombre":"Manuel Pastrana","nota":3.8},' +
-        '{"codigo":"0005","nombre":"Timoteo Uribe","nota":4.6},' +
-        '{"codigo":"0006","nombre":"Alvaro Romero","nota":4.2},' +
-        '{"codigo":"0007","nombre":"Leidy Arango","nota":2.6},' +
-        '{"codigo":"0008","nombre":"Paola Cortes","nota":4.7},' +
-        '{"codigo":"0009","nombre":"Maria Bonilla","nota":2.6},' +
-        '{"codigo":"0010","nombre":"Diego Castillejo","nota":3.7}' +
-        ']}';
-*/
 var jsonText = '{"estudiantes":[]}';
 /*
  * @type Array|Object
@@ -33,9 +19,6 @@ var jsObj = JSON.parse(jsonText);
  * @returns {Boolean}
  */
 function generarTabla(datos, id) {
-    
-    console.log(datos);
-    
     eliminarFilasTabla(id);
     var moduloDatos = datos.estudiantes.length;
     var table = document.getElementById(id);
@@ -56,11 +39,14 @@ function generarTabla(datos, id) {
  * @param {type} array: Arreglo que contiene las celdas que se agregan a las filas.
  * @returns {Boolean}
  */
-function agregarRow(idTable, array) {
-//function agregarRow(idTable,idRow, array) {
+function agregarRow(idTable, idRow, array) {
     var tableAddRow = document.getElementById(idTable);
-    //tableAddRow.removeChild(document.getElementById(idRow));
+    var row = document.getElementById(idRow);
+    if (row) {
+        row.parentNode.removeChild(row);
+    }
     var row = tableAddRow.insertRow(1);
+    row.id = idRow;
     for (i = 0; i < array.length; i++) {
         var celdaX = row.insertCell(i);
         celdaX.innerHTML = array[i];
@@ -105,32 +91,33 @@ function buscarMaxMin(datos, elemento, arg) {
             arrayRow[0] = "Nota mas Alta";
             arrayRow[1] = maxi + ' / ' + 5;
             arrayRow[2] = ((maxi / 5) * 100).toFixed(2);
+            agregarRow("tablaIndicadores", "max", arrayRow);
         }
         if (arg === "min") {
             arrayRow[0] = "Nota mas Baja";
             arrayRow[1] = mini + ' / ' + 5;
             arrayRow[2] = ((mini / 5) * 100).toFixed(2);
+            agregarRow("tablaIndicadores", "min", arrayRow);
         }
-        agregarRow("tablaIndicadores", arrayRow);
         /*
          * 
          * @type Number Se busca dentro de las lista de Estudiantes quien poseen
          * la nota Maxima o Minima para luego sombrearlo con el color distintivo
          * segun se el caso.
-         */    
+         */
         var notaEstudiante = 0;
         for (i = 0; i < moduloDatos; i++) {
-            
+
             notaEstudiante = parseFloat(datos.estudiantes[i].nota);
-            
+
             //alert(notaEstudiante);
-            
+
             if (notaEstudiante === maxi && arg === "max") {
-                elemento.disabled = true;
+                //elemento.disabled = true;
                 document.getElementById("row" + (i + 1)).style.backgroundColor = '#9cfc9c';/*Verde*/
             }
             if (notaEstudiante === mini && arg === "min") {
-                elemento.disabled = true;
+                //elemento.disabled = true;
                 document.getElementById("row" + (i + 1)).style.backgroundColor = '#ff9999';/*Rojo*/
             }
         }
@@ -173,7 +160,7 @@ function promedioNotas() {
     arrayRow[1] = (sumarNotas / nEstudiantes).toFixed(2) + ' / ' + 5;
     arrayRow[2] = ((sumarNotas / nEstudiantes) / 5 * 100).toFixed(2);
 
-    agregarRow("tablaIndicadores", arrayRow);
+    agregarRow("tablaIndicadores", "avg", arrayRow);
 }
 /*
  * Esta funcion permite contar los Estudiantes que estan por encima o por
@@ -199,22 +186,25 @@ function countEstudiantesPromedio(arg) {
         }
     }
     var arrayRow = new Array();
-/*
- * Ademas de crearse el arreglo que  luego por medio de la funcion agregarRow
- * generara la fila, se realiza el calculo de proporcion de estudiantes por 
- * encima o debajo del promedio en base al total de estudiante.
- */
+    /*
+     * Ademas de crearse el arreglo que  luego por medio de la funcion agregarRow
+     * generara la fila, se realiza el calculo de proporcion de estudiantes por 
+     * encima o debajo del promedio en base al total de estudiante.
+     */
     if (arg === "max") {
         arrayRow[0] = "Nro. Estudiantes sobre el promedio";
         arrayRow[1] = jA + ' / ' + nEstudiantes;
         arrayRow[2] = ((jA / nEstudiantes) * 100).toFixed(2);
+        agregarRow("tablaIndicadores", "eMax", arrayRow);
     }
     if (arg === "min") {
         arrayRow[0] = "Nro. Estudiantes debajo del promedio";
         arrayRow[1] = jB + ' / ' + nEstudiantes;
         arrayRow[2] = ((jB / nEstudiantes) * 100).toFixed(2);
+        agregarRow("tablaIndicadores", "eMin", arrayRow);
     }
-    agregarRow("tablaIndicadores", arrayRow);
+
+
 }
 /*
  * Las funciones a continuacion simplemente se encargan de recibir la accion y
@@ -225,7 +215,7 @@ function countEstudiantesPromedio(arg) {
 
 function mostrarEstudiantes(elemento) {
     generarTabla(jsObj, "tablaEstudiantes");
-    
+
     //elemento.disabled = true;
 }
 function mostrarNotaMas(elemento, arg) {
@@ -233,14 +223,14 @@ function mostrarNotaMas(elemento, arg) {
 }
 function mostrarPromedio(elemento) {
     promedioNotas();
-    elemento.disabled = true;
+    //elemento.disabled = true;
 }
 function mostrarCountEstudiantesPromedio(elemento, arg) {
     countEstudiantesPromedio(arg);
-    elemento.disabled = true;
+    //elemento.disabled = true;
 }
 function crearEstudiante() {
-    
+
     var codigo = document.getElementById('codigo').value;
     var nombre = document.getElementById('nombre').value;
     var nota = document.getElementById('nota').value;
@@ -258,26 +248,30 @@ function eliminarFilasTabla(idTable) {
         table.deleteRow(tableHeaderRowCount);
     }
 }
-function formularioEstudiante(display){
+function formularioEstudiante(display) {
+
+    var ccodigo = jsObj.estudiantes.length;
+    document.getElementById("codigo").value = ccodigo + 1;
+
     var ddE, ddR, ddF;
-    
-    if(display==='block'){
+
+    if (display === 'block') {
         ddE = 'none';
         ddR = 'none';
         ddF = 'block';
-    }else{
+    } else {
         ddE = 'block';
         ddR = 'block';
         ddF = 'none';
     }
     var divEstudiante = document.getElementById('divEstudiante');
-    divEstudiante.setAttribute("style", "display:"+ddE);
-    
+    divEstudiante.setAttribute("style", "display:" + ddE);
+
     var divResultados = document.getElementById('divResultados');
-    divResultados.setAttribute("style", "display:"+ddR);
-    
+    divResultados.setAttribute("style", "display:" + ddR);
+
     var divFormulario = document.getElementById('divFormulario');
-    divFormulario.setAttribute("style", "display:"+ddF);
+    divFormulario.setAttribute("style", "display:" + ddF);
 }
 
 
