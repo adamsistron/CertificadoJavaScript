@@ -56,12 +56,12 @@ function agregarRow(idTable, idRow, array) {
 /*
  * 
  * @param {type} datos: Recibe la variable globa JSON con los datos de estudiantes.
- * @param {type} elemento: Recibel el objeto que acciono la funcion.
+ * @param {type} : Recibel el objeto que acciono la funcion.
  * @param {type} arg: Recibe el argumento max/min que indicara que aperacion
  * realizar, si calcular la nota minima o maximo.
  * @returns {undefined}
  */
-function buscarMaxMin(datos, elemento, arg) {
+function buscarMaxMin(datos, arg) {
 
     var moduloDatos = datos.estudiantes.length;
     var notas = Array();
@@ -113,11 +113,11 @@ function buscarMaxMin(datos, elemento, arg) {
             //alert(notaEstudiante);
 
             if (notaEstudiante === maxi && arg === "max") {
-                //elemento.disabled = true;
+
                 document.getElementById("row" + (i + 1)).style.backgroundColor = '#9cfc9c';/*Verde*/
             }
             if (notaEstudiante === mini && arg === "min") {
-                //elemento.disabled = true;
+
                 document.getElementById("row" + (i + 1)).style.backgroundColor = '#ff9999';/*Rojo*/
             }
         }
@@ -213,21 +213,21 @@ function countEstudiantesPromedio(arg) {
  * 
  */
 
-function mostrarEstudiantes(elemento) {
+function mostrarEstudiantes() {
     generarTabla(jsObj, "tablaEstudiantes");
 
-    //elemento.disabled = true;
+
 }
-function mostrarNotaMas(elemento, arg) {
-    buscarMaxMin(jsObj, elemento, arg);
+function mostrarNotaMas(arg) {
+    buscarMaxMin(jsObj, arg);
 }
-function mostrarPromedio(elemento) {
+function mostrarPromedio() {
     promedioNotas();
-    //elemento.disabled = true;
+
 }
-function mostrarCountEstudiantesPromedio(elemento, arg) {
+function mostrarCountEstudiantesPromedio(arg) {
     countEstudiantesPromedio(arg);
-    //elemento.disabled = true;
+
 }
 function crearEstudiante() {
 
@@ -273,7 +273,3 @@ function formularioEstudiante(display) {
     var divFormulario = document.getElementById('divFormulario');
     divFormulario.setAttribute("style", "display:" + ddF);
 }
-
-
-
-

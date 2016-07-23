@@ -84,6 +84,26 @@ button:hover{
 button:disabled{
     background-color: #ccccff;
 }
+.nuevo{
+    background-color: #00ff55;
+    border: none;
+    color: white;
+    margin: 2px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    width: 190px;
+
+}
+.nuevo:hover{
+    background-color: #cccccc;
+
+}
+.nuevo:disabled{
+    background-color: #ccccff;
+}
 
 #mostrarAvrg{
     color: #b3a700;

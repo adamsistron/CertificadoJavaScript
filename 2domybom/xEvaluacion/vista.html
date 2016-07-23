@@ -4,20 +4,21 @@
         <title>Evaluacion Curso JavaScript: lo esencial</title>
         <link rel="stylesheet" type="text/css" href="css/estilo.css">
         <script type="text/javascript" src="js/controlador.js"></script>
+
     </head>
-    <body onload="mostrarEstudiantes()">
+    <body>
 
         <div id="header">
-            <h1>Cartelera de Resultados/Estudiantes</h1>
+            <h1>Record de Estudiantes</h1>
         </div>
 
         <div id="nav">
-            <button id="op7" onclick="formularioEstudiante('block')">Nuevo Estudiante</button>
-            <button id="op2" onclick="mostrarPromedio(this)">Nota Promedio</button>
-            <button id="op3" onclick="mostrarNotaMas(this, 'max')">Notas mas Alta</button>
-            <button id="op4" onclick="mostrarNotaMas(this, 'min')">Notas mas Baja</button>
-            <button id="op5" onclick="mostrarCountEstudiantesPromedio(this, 'max')">Estudiantes sobre el Promedio</button>
-            <button id="op6" onclick="mostrarCountEstudiantesPromedio(this, 'min')">Estudiantes debajo del Promedio</button>
+            <button id="op1" class="nuevo">Nuevo Estudiante</button>
+            <button id="op2">Nota Promedio</button>
+            <button id="op3">Notas mas Alta</button>
+            <button id="op4">Notas mas Baja</button>
+            <button id="op5">Estudiantes sobre el Promedio</button>
+            <button id="op6">Estudiantes debajo del Promedio</button>
             <button onclick="javascript:location.reload()">Resetear</button>
         </div>
         <div id="divFormulario">
@@ -27,7 +28,7 @@
             <input type="text" id="nombre" name="nombre" value=""><br>
             <label for="nota">Nota</label><br>
             <input type="number" id="nota" name="nota" min=0 max=5 step="any" ><br>
-            <button onclick="crearEstudiante(this)">Guardar Estudiantes</button>
+            <button id="op7" class="nuevo">Guardar Estudiantes</button>
         </div>
         <div id="divEstudiante" class="seccion2" style="display: block">
             <table id="tablaEstudiantes">
@@ -53,4 +54,23 @@
         </div>
 
     </body>
+    <script>
+        document.getElementById("op1").addEventListener("click", function () {
+            formularioEstudiante('block');
+        }, false);
+        document.getElementById("op7").addEventListener("click", crearEstudiante);
+        document.getElementById("op2").addEventListener("click", mostrarPromedio);
+        document.getElementById("op3").addEventListener("click", function () {
+            mostrarNotaMas('max');
+        }, false);
+        document.getElementById("op4").addEventListener("click", function () {
+            mostrarNotaMas('min');
+        }, false);
+        document.getElementById("op5").addEventListener("click", function () {
+            mostrarCountEstudiantesPromedio('max');
+        }, false);
+        document.getElementById("op6").addEventListener("click", function () {
+            mostrarCountEstudiantesPromedio('min');
+        }, false);
+    </script>
 </html>
