@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="jquery.js"></script>
+    <script type="text/javascript">
+        function editarEstudiante(codigo) {
+            var estudiante;
+            for (var i = 0; i < localStorage.length; i++) {
+                var clave = localStorage.key(i);
+                if (clave == codigo) {
+                    estudiante = $.parseJSON(localStorage.getItem(clave));
+                    $("#codigo").val(estudiante.codigo);
+                    $("#nombre").val(estudiante.nombre);
+                    $("#nota").val(estudiante.nota);
+                }
+            }
+        }
+
+        function listarEstudiantes() {
+            var tabla = "";
+            var parrafo1 = $("#p1");
+            tabla += '<table border="1">';
+            tabla += '<tr>';
+            tabla += '<th>CODIGO</th>';
+            tabla += ' <th>NOMBRE</th>';
+            tabla += '<th>NOTA</th>';
+            tabla += '<th>EDITAR</th>';
+            tabla += '<th>ELIMINAR</th>';
+            tabla += '</tr>';
+            for (var i = 0; i < localStorage.length; i++) {
+                var clave = localStorage.key(i);
+                var estudiante = $.parseJSON(localStorage.getItem(clave));
+                tabla += '<tr>';
+                tabla += '<td>' + estudiante.codigo + '</td>';
+                tabla += '<td>' + estudiante.nombre + '</td>';
+                tabla += '<td>' + estudiante.nota + '</td>';
+                tabla += '<td><button onclick="editarEstudiante(\'' + estudiante.codigo + '\');">Editar</button></td>';
+                tabla += '<td><button onclick="eliminarEstudiante(\'' + estudiante.codigo + '\');">Eliminar</button></td>';
+                tabla += '</tr>';
+
+            }
+            tabla += '</table>';
+            $(parrafo1).html(tabla);
+        }
+
+        function eliminarEstudiante(codigo) {
+
+            localStorage.removeItem(codigo);
+            listarEstudiantes();
+            reestablecer();
+        }
+
+        function pad(n, length) {
+            var n = n.toString();
+            while (n.length < length)
+                n = "0" + n;
+            return n;
+        }
+
+        function reestablecer() {
+            var n = localStorage.length + 1;
+            pcodigo = pad(n, 3);
+            $("#codigo").val(pcodigo);
+            $("#nombre").val("");
+            $("#nota").val("");
+        }
+
+        function promedioNotas() {
+            var parrafo2 = $("#p2");
+            var nEstudiantes = localStorage.length;
+            var sumarNotas = 0;
+            if (nEstudiantes > 0) {
+                for (i = 0; i < nEstudiantes; i++) {
+                    var clave = localStorage.key(i);
+                    var estudiante = $.parseJSON(localStorage.getItem(clave));
+                    sumarNotas += parseFloat(estudiante.nota);
+                }
+                var promedio = (sumarNotas / nEstudiantes).toFixed(2) + ' de ' + 5;
+                var proporcion = ((sumarNotas / nEstudiantes) / 5 * 100).toFixed(2);
+                var rPromedio = "Promedio de Notas:\t" + promedio + "\nIndice de Promedio:\t" + proporcion;
+                alert(rPromedio);
+            } else {
+                alert("No hay estudiantes cargados.");
+            }
+        }
+
+        function buscarNotas(xNota) {
+            var notas = Array();
+            var nEstudiantes = localStorage.length;
+            var sumarNotas = 0;
+            if (nEstudiantes > 0) {
+                for (i = 0; i < nEstudiantes; i++) {
+                    var clave = localStorage.key(i);
+                    var estudiante = $.parseJSON(localStorage.getItem(clave));
+                    notas[i] = parseFloat(estudiante.nota);
+                }
+                var maxi = Math.max.apply(Math, notas);
+                var mini = Math.min.apply(Math, notas);
+                if (xNota == 'maxi') {
+                    var rNota = "La nota mayor es:\t" + maxi;
+                }
+                if (xNota == 'mini') {
+                    var rNota = "La nota menor es:\t" + mini;
+                }
+                alert(rNota);
+            } else {
+                alert("No hay estudiantes cargados.");
+            }
+        }
+
+        function validInput() {
+            var inputText = $('input:text').val().trim();
+            var rText, rNumber;
+            if (inputText.length == 0) {
+                rText = false;
+            } else {
+                rText = true;
+            }
+
+            var inputNumber = $('#nota').val();
+
+            if ($.isNumeric(inputNumber)) {
+                rNumber = true;
+            } else {
+                rNumber = false;
+            }
+            if (rText && rNumber) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        $(document).ready(function() {
+            reestablecer();
+            listarEstudiantes();
+
+            $("#boton1").click(function() {
+                var codigo = $("#codigo").val();
+                var nombre = $("#nombre").val();
+                var nota = $("#nota").val();
+
+                if (validInput()) {
+                    var estudiante = {
+                        codigo: codigo,
+                        nombre: nombre,
+                        nota: nota
+                    };
+                    localStorage.setItem(codigo, JSON.stringify(estudiante));
+                    contador = localStorage.length + 1;
+                    listarEstudiantes();
+                    reestablecer();
+                } else {
+                    alert("Debe ingresar todos los datos del estudiante solicitados en el formulario de forma correcta,\n respetando texto y numeros");
+                }
+            });
+            $("#boton2").click(function() {
+                reestablecer();
+            });
+            $("#boton3").click(function() {
+                promedioNotas();
+            });
+            $("#boton4").click(function() {
+                buscarNotas("maxi");
+            });
+            $("#boton5").click(function() {
+                buscarNotas("mini");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Registro estudiantes</h2>
+        <form name="formulario">
+            Codigo:
+            <br>
+            <input type="number" id="codigo" name="codigo" value="" readonly="readonly">
+            <br>Nombre:
+            <br>
+            <input type="text" id="nombre" name="nombre" value="">
+            <br>Nota:
+            <br>
+            <input type="number" id="nota" name="nota" min=0 max=5 step="any">
+            </textarea>
+            <br>
+        </form>
+        <br>
+        <button id="boton1">Guardar</button>
+        <button id="boton2">Reestablecer</button>
+        <button id="boton3">Mostrar Promedio</button>
+        <button id="boton4">Mostrar Nota Mayor</button>
+        <button id="boton5">Mostrar Nota Menor</button>
+        <p id="p1"></p>
+</body>
+
+</html>
