@@ -9,25 +9,27 @@
         <style type="text/css">
             .negro {
                 position: absolute;
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
                 background: black;
-                border: 1px solid black;
+                border: 1px solid white;
+                color: gray;
             }
 
 
             .blanco {
                 position: absolute;
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
                 background: white;
                 border: 1px solid black;
+                color: gray;
             }
-            
+
             #mesa{
                 position: absolute;
-                width: 90%;
-                height: 90%;
+                width: 576px;
+                height: 576px;
                 background: gray;
                 border: 1px solid red;
             }
@@ -41,65 +43,72 @@
             var fila = 8;
             var columna = 8;
             function contruyeTablero() {
-
-
-                var tablero = "";
-                var cuadroClass = "";
-                var myId = "";
-
+                var tablero = '';
+                var cuadroClass = '';
+                var myId = '';
+                var parinpar = '';
                 for (var i = 1; i < fila + 1; i++) {
-
                     for (var j = 1; j < columna + 1; j++) {
-                        if (j % 2 === 0) {
-                            cuadroClass = 'negro';
-                        } else {
+                        parinpar = i % 2;
+                        if (j % 2 === parinpar) {
                             cuadroClass = 'blanco';
+                        } else {
+                            cuadroClass = 'negro';
                         }
-
                         myId = 'f' + i + 'c' + j;
-
-                        tablero += '<div class="' + cuadroClass + '" id="' + myId + '"></div>';
-
+                        tablero += '<div class="' + cuadroClass + '" id="' + myId + '">' + myId + '</div>';
                     }
                 }
-                $("#mesa").html(tablero);
+                $('#mesa').html(tablero);
             }
-
             function ordenaCuadros() {
-
-                var myId = "";
-                var myIdOld = "";
+                var myId = '';
+                var myIdFirts = '';
+                var myIdBefore = '';
                 for (var i = 1; i < fila + 1; i++) {
-
                     for (var j = 1; j < columna + 1; j++) {
                         myId = 'f' + i + 'c' + j;
-
-                        if (myId !== "f1c1") {
-                            lugar($("#" + myId), myIdOld);
+                        if (j === 1) {
+                            //alert(i+'-'+j);
+                            if (i > 1) {
+                                ubicar($('#' + myId), myIdFirts, 'top', 'bottom');
+                                myIdFirts = '#' + myId;
+                                myIdBefore = myIdFirts;
+                            } else {
+                                myIdFirts = '#' + myId;
+                                myIdBefore = myIdFirts;
+                            }
+                        } else {
+                            ubicar($('#' + myId), myIdBefore, 'left', 'right');
+                            myIdBefore = '#' + myId;
                         }
-                        myIdOld = "#" + myId;
                     }
-
-
-
                 }
-
             }
-
-            function lugar(element, target) {
+            function ubicar(element, target, my, at) {
+                //alert('Ele: ' + element.attr('id') + ' Targ: ' + target + ' My: ' + my + ' At: ' + at);
                 element.position({
-                    my: "left",
-                    at: "right",
-                    of: target
+                    my: my,
+                    at: at,
+                    of: target,
+                    collision: 'none'
                 });
             }
-
-
-
             $(document).ready(function () {
                 contruyeTablero();
                 ordenaCuadros();
+                $(window).resize(function () {
+                    // aquí le pasamos la clase o id de nuestro div a centrar (en este caso "caja")
+                    $('#mesa').css({
+                        position: 'absolute',
+                        left: ($(window).width() - $('#mesa').outerWidth()) / 2,
+                        top: ($(window).height() - $('#mesa').outerHeight()) / 2
+                    });
+                });
+                // Ejecutamos la función
+                $(window).resize();
             });
+
 
         </script>
 
