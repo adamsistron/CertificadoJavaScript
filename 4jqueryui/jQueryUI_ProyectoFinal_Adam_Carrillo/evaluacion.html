@@ -7,7 +7,15 @@
         <link href="jquery-ui/jquery-ui.css" rel="stylesheet">
 
         <style type="text/css">
-            .negro {
+
+            #mesa{
+                position: absolute;
+                width: 576px;
+                height: 576px;
+                background: gray;
+                border: 1px solid red;
+            }
+            .cuadroNegro {
                 position: absolute;
                 width: 70px;
                 height: 70px;
@@ -17,7 +25,7 @@
             }
 
 
-            .blanco {
+            .cuadroBlanco {
                 position: absolute;
                 width: 70px;
                 height: 70px;
@@ -26,12 +34,21 @@
                 color: gray;
             }
 
-            #mesa{
-                position: absolute;
-                width: 576px;
-                height: 576px;
-                background: gray;
-                border: 1px solid red;
+
+            .ficha {
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+
+            }
+
+            .fichaRoja {
+                background: red;
+                border: 3px solid gray;
+            }
+            .fichaAzul {
+                background: blue;
+                border: 3px solid gray;
             }
 
         </style>
@@ -51,9 +68,9 @@
                     for (var j = 1; j < columna + 1; j++) {
                         parinpar = i % 2;
                         if (j % 2 === parinpar) {
-                            cuadroClass = 'blanco';
+                            cuadroClass = 'cuadroBlanco';
                         } else {
-                            cuadroClass = 'negro';
+                            cuadroClass = 'cuadroNegro';
                         }
                         myId = 'f' + i + 'c' + j;
                         tablero += '<div class="' + cuadroClass + '" id="' + myId + '">' + myId + '</div>';
@@ -71,7 +88,7 @@
                         if (j === 1) {
                             //alert(i+'-'+j);
                             if (i > 1) {
-                                ubicar($('#' + myId), myIdFirts, 'top', 'bottom');
+                                ubicarCuadros($('#' + myId), myIdFirts, 'top', 'bottom');
                                 myIdFirts = '#' + myId;
                                 myIdBefore = myIdFirts;
                             } else {
@@ -79,14 +96,15 @@
                                 myIdBefore = myIdFirts;
                             }
                         } else {
-                            ubicar($('#' + myId), myIdBefore, 'left', 'right');
+                            ubicarCuadros($('#' + myId), myIdBefore, 'left', 'right');
                             myIdBefore = '#' + myId;
                         }
                     }
                 }
             }
-            function ubicar(element, target, my, at) {
-                element.position({
+            function ubicarCuadros(element, target, my, at) {
+                //alert(element.attr('id')+'-'+target+'-'+my+'-'+at);
+        element.position({
                     my: my,
                     at: at,
                     of: target,
@@ -94,8 +112,11 @@
                 });
             }
             $(document).ready(function () {
+
                 construyeCuadros();
+
                 ordenaCuadros();
+
                 $(window).resize(function () {
                     $('#mesa').css({
                         position: 'absolute',
@@ -103,7 +124,46 @@
                         top: ($(window).height() - $('#mesa').outerHeight()) / 2
                     });
                 });
+
                 $(window).resize();
+
+                $("#azul1").position({
+                    my: "center",
+                    at: "center",
+                    of: "#f1c2"
+                });
+
+                $("#roja1").position({
+                    my: "center",
+                    at: "center",
+                    of: "#f8c1"
+                });
+
+                $("#roja2").position({
+                    my: "center",
+                    at: "center",
+                    of: "#f6c1"
+                });
+
+                $(".ficha").draggable({grid: [70, 70]},/*{revert: "valid"},*/
+                        {
+                            start: function () {
+                               $("#fichaSeleccionada").val($(this).attr('id'));
+                            }}
+
+                );
+
+
+                $(".cuadroNegro").droppable({
+                    drop: function (event, ui) {
+
+                        var target = "#" + $(this).attr('id');
+                        var ficha = $("#fichaSeleccionada").val();
+                        
+                        ubicarCuadros($('#' + ficha), target, 'center', 'center');
+                        
+                    }
+                });
             });
 
 
@@ -112,8 +172,12 @@
     </head>
 
     <body>
-
+        <input type="text" id="fichaSeleccionada" value=""/>
         <div id="mesa"></div>
+        <div id="azul1" class="ficha fichaAzul"></div>
+        <div id="roja1" class="ficha fichaRoja"></div>
+        <div id="roja2" class="ficha fichaRoja"></div>
+
 
 
 
