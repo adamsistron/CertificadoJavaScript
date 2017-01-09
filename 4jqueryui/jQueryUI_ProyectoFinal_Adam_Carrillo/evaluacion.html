@@ -42,7 +42,7 @@
         <script type="text/javascript">
             var fila = 8;
             var columna = 8;
-            function contruyeTablero() {
+            function construyeCuadros() {
                 var tablero = '';
                 var cuadroClass = '';
                 var myId = '';
@@ -86,7 +86,6 @@
                 }
             }
             function ubicar(element, target, my, at) {
-                //alert('Ele: ' + element.attr('id') + ' Targ: ' + target + ' My: ' + my + ' At: ' + at);
                 element.position({
                     my: my,
                     at: at,
@@ -95,17 +94,15 @@
                 });
             }
             $(document).ready(function () {
-                contruyeTablero();
+                construyeCuadros();
                 ordenaCuadros();
                 $(window).resize(function () {
-                    // aquí le pasamos la clase o id de nuestro div a centrar (en este caso "caja")
                     $('#mesa').css({
                         position: 'absolute',
                         left: ($(window).width() - $('#mesa').outerWidth()) / 2,
                         top: ($(window).height() - $('#mesa').outerHeight()) / 2
                     });
                 });
-                // Ejecutamos la función
                 $(window).resize();
             });
 
