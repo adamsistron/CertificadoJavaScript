@@ -34,6 +34,10 @@
                 color: gray;
             }
 
+            .opcion { border: 3px solid greenyellow;}
+            #mesa .ui-selecting { background: #25A9F0; }
+            #mesa .ui-selected { background: #0A12FA; color: white; }
+
 
             .ficha {
                 border-radius: 50%;
@@ -57,7 +61,7 @@
         <script src="jquery-ui/jquery-ui.js"></script>
 
         <script type="text/javascript">
-            var fila = 8;
+            var fila = 9;
             var columna = 8;
             function construyeCuadros() {
                 var tablero = '';
@@ -72,7 +76,7 @@
                         } else {
                             cuadroClass = 'cuadroNegro';
                         }
-                        myId = 'f' + i + 'c' + j;
+                        myId = i + 'y' + j;
                         tablero += '<div class="' + cuadroClass + '" id="' + myId + '">' + myId + '</div>';
                     }
                 }
@@ -84,7 +88,7 @@
                 var myIdBefore = '';
                 for (var i = 1; i < fila + 1; i++) {
                     for (var j = 1; j < columna + 1; j++) {
-                        myId = 'f' + i + 'c' + j;
+                        myId = i + 'y' + j;
                         if (j === 1) {
                             //alert(i+'-'+j);
                             if (i > 1) {
@@ -104,12 +108,18 @@
             }
             function ubicarCuadros(element, target, my, at) {
                 //alert(element.attr('id')+'-'+target+'-'+my+'-'+at);
-        element.position({
+                element.position({
                     my: my,
                     at: at,
                     of: target,
                     collision: 'none'
                 });
+            }
+
+            function callback() {
+                setTimeout(function () {
+                    $("#effect").removeClass("newClass");
+                }, 1500);
             }
             $(document).ready(function () {
 
@@ -130,38 +140,66 @@
                 $("#azul1").position({
                     my: "center",
                     at: "center",
-                    of: "#f1c2"
+                    of: "#1y2"
                 });
 
                 $("#roja1").position({
                     my: "center",
                     at: "center",
-                    of: "#f8c1"
+                    of: "#8y1"
                 });
 
                 $("#roja2").position({
                     my: "center",
                     at: "center",
-                    of: "#f6c1"
+                    of: "#6y1"
                 });
 
-                $(".ficha").draggable({grid: [70, 70]},/*{revert: "valid"},*/
+                $(".ficha").draggable({grid: [70, 70]}, /*{revert: "valid"},*/
                         {
                             start: function () {
-                               $("#fichaSeleccionada").val($(this).attr('id'));
+                                $("#fichaSeleccionada").val($(this).attr('id'));
                             }}
 
                 );
 
+                /*
+                 $(".cuadroNegro").droppable({
+                 drop: function (event, ui) {
+                 
+                 var target = "#" + $(this).attr('id');
+                 var ficha = $("#fichaSeleccionada").val();
+                 
+                 ubicarCuadros($('#' + ficha), target, 'center', 'center');
+                 
+                 }
+                 });
+                 */
 
-                $(".cuadroNegro").droppable({
-                    drop: function (event, ui) {
+                $("#mesa").selectable({
+                    selected: function (event, ui) {
+                        //alert(ui.attr('id'));
+                        //var cuadro = array();
+                        jQuery.each(ui, function (key, value) {
+                            //console.log("key", key, "value", value);
+                            var cuadro = value.id.split("y");
+                            console.log(cuadro);
 
-                        var target = "#" + $(this).attr('id');
-                        var ficha = $("#fichaSeleccionada").val();
-                        
-                        ubicarCuadros($('#' + ficha), target, 'center', 'center');
-                        
+                            fila = parseInt(cuadro[0]);
+                            columna = parseInt(cuadro[1]);
+                            //alert(fila + '---' + columna);
+
+                            filaMas = fila+1;
+                            columnaMas = columna+1;
+                            columnaMenos = columna-1;
+                            
+                            //alert(filaMas+'---'+columnaMas+'---'+columnaMenos);
+
+                            $('#' + filaMas + 'y' + columnaMas).addClass("opcion");
+                            $('#' + filaMas + 'y' + columnaMenos).addClass("opcion");
+
+
+                        });
                     }
                 });
             });
